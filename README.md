@@ -18,7 +18,6 @@
 | user_id            | references | foreign_key: true |
 | title              | string    | null: false |
 | content            | text      | null: false |
-| status             | text      | null: false |
 
 ### Association
   belongs_to :user

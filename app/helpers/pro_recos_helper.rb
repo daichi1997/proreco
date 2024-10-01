@@ -1,0 +1,2 @@
+module ProRecosHelper
+end

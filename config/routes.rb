@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "prorecos#index"
-  resources :prorecos
+  root to: "pro_recos#index"
+  resources :pro_recos
 end

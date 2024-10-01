@@ -6,5 +6,5 @@ class User < ApplicationRecord
   validates :password,
   format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'is invalid. Include both letters and numbers' }
 
-         
+   has_many :pro_recos      
 end
