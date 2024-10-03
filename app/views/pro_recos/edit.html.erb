@@ -1,0 +1,46 @@
+<div class="pro-reco-form-container">
+  <h1>プロレコを編集</h1>
+
+  <%= form_with(model: @pro_reco, local: true, class: "pro-reco-form") do |form| %>
+    <% if @pro_reco.errors.any? %>
+      <div class="error-messages">
+        <h2><%= pluralize(@pro_reco.errors.count, "error") %> prohibited this pro reco from being saved:</h2>
+        <ul>
+          <% @pro_reco.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title, "タイトル" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content, "内容" %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :status, "ステータス" %>
+      <%= form.select :status, ProReco.statuses.keys.map { |status| [t("enums.pro_reco.status.#{status}"), status] }, {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :image, "画像" %>
+      <% if @pro_reco.image.attached? %>
+        <div class="current-image">
+          <%= image_tag @pro_reco.image, class: "thumbnail" %>
+        </div>
+      <% end %>
+      <%= form.file_field :image, class: "form-control-file" %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "更新する", class: "btn btn-primary" %>
+      <%= link_to '戻る', pro_reco_path(@pro_reco), class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

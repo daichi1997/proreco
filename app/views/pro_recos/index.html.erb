@@ -1,26 +1,30 @@
 <div class="pro-reco-index">
-  <h1>プロレコ一覧</h1>
 
-  <div class="actions">
+    <div class="actions">
     <%= link_to '新規プロレコ作成', new_pro_reco_path, class: 'btn btn-primary' %>
   </div>
+
+  <h1>プロレコ一覧</h1>
 
   <div class="pro-reco-grid">
     <% @pro_recos.each do |pro_reco| %>
       <div class="pro-reco-card">
-        <% if pro_reco.image.attached? %>
-          <%= image_tag pro_reco.image, class: 'card-img' %>
-        <% else %>
-          <div class="card-img placeholder">No Image</div>
-        <% end %>
+        <div class="card-image">
+          <% if pro_reco.image.attached? %>
+            <%= image_tag pro_reco.image, alt: pro_reco.title %>
+          <% else %>
+            <div class="placeholder-image">No Image</div>
+          <% end %>
+        </div>
         <div class="card-content">
           <h2><%= pro_reco.title %></h2>
           <p><%= truncate(pro_reco.content, length: 100) %></p>
-          <div class="card-footer">
-            <%= link_to '詳細', pro_reco_path(pro_reco), class: 'btn btn-secondary' %>
-          </div>
+          <%= link_to '続きを見る', pro_reco_path(pro_reco), class: 'read-more-btn' %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+  <%= paginate @pro_recos %>
+

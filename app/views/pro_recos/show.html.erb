@@ -1,0 +1,26 @@
+<div class="pro-reco-show">
+  <div class="pro-reco-header">
+    <h1><%= @pro_reco.title %></h1>
+    <div class="pro-reco-meta">
+      <span class="date">投稿日: <%= @pro_reco.created_at.strftime('%Y年%m月%d日') %></span>
+    </div>
+  </div>
+
+  <div class="pro-reco-content">
+    <% if @pro_reco.image.attached? %>
+      <div class="pro-reco-image">
+        <%= image_tag @pro_reco.image, alt: @pro_reco.title %>
+      </div>
+    <% end %>
+
+    <div class="pro-reco-text">
+      <%= simple_format(@pro_reco.content) %>
+    </div>
+  </div>
+
+  <div class="pro-reco-actions">
+    <%= link_to '編集', edit_pro_reco_path(@pro_reco), class: 'btn btn-edit' %>
+    <%= button_to '削除', pro_reco_path(@pro_reco), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-delete' %>
+    <%= link_to '戻る', pro_recos_path, class: 'btn btn-back' %>
+  </div>
+</div>
